@@ -1,0 +1,65 @@
+---
+- name: Trilium setup by https://github.com/zadam/trilium/wiki/Packaged-server-installation
+  hosts: 127.0.0.1
+  connection: local
+  become: true
+  vars:
+    trilium_user: trilium
+    trilium_dir: /opt/trilium
+    trilium_data_dir: /opt/trilium-data
+    trilium_version: 0.47.7
+    packages:
+      - net-tools
+      - awscli
+
+  tasks:
+    - name: Install required libraries
+      apt:
+        name: "{{ item }}"
+        state: present
+        install_recommends: false
+      loop: "{{ packages }}"
+      
+    - name: Ensure group '{{trilium_user}}'' exists
+      group:
+        name: "{{trilium_user}}"
+        state: present
+    - name: Add the user '{{trilium_user}}'
+      user:
+        name: "{{trilium_user}}"
+        comment: "{{trilium_user}}"
+        groups: "{{trilium_user}}"
+        shell: /sbin/nologin
+        create_home: no
+        append: yes
+        state: present
+    - name: Create install directory {{trilium_dir}}
+      file:
+        path: "{{trilium_dir}}"
+        state: directory
+        owner: "{{trilium_user}}"
+        group: "{{trilium_user}}"
+        mode: '0700'
+    - name: Create data directory {{trilium_data_dir}}
+      file:
+        path: "{{trilium_data_dir}}"
+        state: directory
+        owner: "{{trilium_user}}"
+        group: "{{trilium_user}}"
+        mode: '0700'
+    - name: Download and unzip Trilium v{{trilium_version}} to {{trilium_dir}}
+      unarchive:
+        src: https://github.com/zadam/trilium/releases/download/v{{trilium_version}}/trilium-linux-x64-server-{{trilium_version}}.tar.xz
+        remote_src: yes
+        dest: "{{trilium_dir}}"
+        owner: "{{trilium_user}}"
+        group: "{{trilium_user}}"
+        extra_opts: [--strip-components=1]
+    - name: Create service file
+      template:
+        src: ./templates/trilium.service.j2
+        dest: /etc/systemd/system/trilium.service
+        owner: root
+        group: root
+        mode: '0600'
+

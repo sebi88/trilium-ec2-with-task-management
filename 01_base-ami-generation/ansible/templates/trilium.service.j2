@@ -1,0 +1,18 @@
+[Unit]
+Description=Trilium Daemon
+After=syslog.target network.target
+
+[Service]
+User={{trilium_user}}
+Group={{trilium_user}}
+Type=simple
+ExecStart={{trilium_dir}}/trilium.sh
+WorkingDirectory={{trilium_dir}}
+Environment="TRILIUM_DATA_DIR={{trilium_data_dir}}"
+
+TimeoutStopSec=20
+# KillMode=process leads to error, according to https://www.freedesktop.org/software/systemd/man/systemd.kill.html
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

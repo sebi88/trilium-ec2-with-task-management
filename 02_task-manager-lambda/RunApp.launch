@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/java/src/test/java/s88/me/uk/tasks/RunApp.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+        <mapEntry key="TRILIUM_PASSWORD" value="*************"/>
+        <mapEntry key="TRILIUM_URL" value="https://trilium.xxx.uk/share/tasks"/>
+        <mapEntry key="TRILIUM_USER" value="worker"/>
+        <mapEntry key="SES_SENDER" value="no-reply@mailtest.xxx.uk"/>
+        <mapEntry key="SES_RECIPIENT" value="xxx@gmail.com"/>
+        <mapEntry key="SES_AWS_PROFILE" value="sebi-private"/>
+        <mapEntry key="SES_AWS_REGION" value="eu-north-1"/>
+    </mapAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="xxx.uk.tasks.RunApp"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="java"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="java"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dlog4j.configurationFile=log4j2-console.xml"/>
+</launchConfiguration>
